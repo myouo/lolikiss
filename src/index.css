@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-gradient: radial-gradient(circle at top left, #ffe4e6 0%, #f3e8ff 40%, #ffe4e6 100%);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: #4a4a4a;
+  overflow-x: hidden;
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* Grid pattern overlay */
+.grid-pattern {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.glass {
+  @apply bg-white/40 backdrop-blur-lg border-2 border-white/50 shadow-[0_8px_32px_0_rgba(255,182,193,0.2)];
+}
+
+/* Galgame Choice Button Style */
+.vn-choice {
+  @apply relative overflow-hidden transition-all duration-300 border-2 border-white/80 shadow-lg;
+  background: linear-gradient(to right, rgba(255,255,255,0.8), rgba(255,192,203,0.4));
+}
+
+.vn-choice::before {
+  content: '';
+  @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+}
+
+.vn-choice:hover::before {
+  @apply opacity-100;
+  animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+
+/* Ornate Frame for Icons */
+.ornate-frame {
+  @apply relative flex items-center justify-center;
+}
+
+.ornate-frame::after {
+  content: '鈼';
+  @apply absolute -top-1 -right-1 text-[8px] text-pink-300;
+}
+.ornate-frame::before {
+  content: '鈼';
+  @apply absolute -bottom-1 -left-1 text-[8px] text-pink-300;
+}
+
+.cute-text {
+  font-family: 'Mochiay Pop One', sans-serif;
+}
+
+.sticker-text {
+  filter: drop-shadow(0 4px 0px rgba(255, 182, 193, 0.4));
+  -webkit-text-stroke: 12px white;
+  paint-order: stroke fill;
+}
+
+.hand-text {
+  font-family: 'Gaegu', cursive;
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+.animate-float-delayed {
+  animation: float-delayed 7s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #fff1f2;
+}
+::-webkit-scrollbar-thumb {
+  background: #fbcfe8;
+  border-radius: 10px;
+  border: 3px solid #fff1f2;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f9a8d4;
+}
