@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="lolikiss love icon">
+  <defs>
+    <linearGradient id="bg" x1="10" y1="8" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff1f7"/>
+      <stop offset="0.52" stop-color="#ffe4ef"/>
+      <stop offset="1" stop-color="#f3e8ff"/>
+    </linearGradient>
+    <linearGradient id="heart" x1="21" y1="18" x2="46" y2="47" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff9fcf"/>
+      <stop offset="1" stop-color="#ff5fa8"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="5" y="5" width="54" height="54" rx="17" fill="url(#bg)"/>
+  <rect x="5" y="5" width="54" height="54" rx="17" fill="none" stroke="#fff" stroke-width="4"/>
+  <rect x="9" y="9" width="46" height="46" rx="14" fill="none" stroke="#fbcfe8" stroke-width="2" opacity="0.75"/>
+
+  <path
+    d="M32 47.5 27.9 44C18.6 36.1 14 31.6 14 24.6 14 19 18.2 15 23.6 15c3.1 0 6.1 1.5 8.4 4.3C34.3 16.5 37.3 15 40.4 15 45.8 15 50 19 50 24.6c0 7-4.6 11.5-13.9 19.4L32 47.5Z"
+    fill="url(#heart)"
+    stroke="#fff"
+    stroke-width="4"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M32 47.5 27.9 44C18.6 36.1 14 31.6 14 24.6 14 19 18.2 15 23.6 15c3.1 0 6.1 1.5 8.4 4.3C34.3 16.5 37.3 15 40.4 15 45.8 15 50 19 50 24.6c0 7-4.6 11.5-13.9 19.4L32 47.5Z"
+    fill="none"
+    stroke="#c02669"
+    stroke-width="1.5"
+    stroke-linejoin="round"
+    opacity="0.24"
+  />
+
+  <path d="M18 10v5M18 21v5M10 18h5M21 18h5" stroke="#f472b6" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M49 38v4M49 48v4M42 45h4M52 45h4" stroke="#c4b5fd" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="44" cy="13" r="2.5" fill="#fde68a" stroke="#fff" stroke-width="1.5"/>
+</svg>

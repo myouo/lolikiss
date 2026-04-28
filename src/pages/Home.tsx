@@ -1,13 +1,29 @@
-import { ArrowRight, Monitor, Book, Link as LinkIcon, Beaker, Heart, Sparkles, Star, History, Save, RotateCcw, Settings } from 'lucide-react';
+import {
+  ArrowRight,
+  Beaker,
+  Book,
+  Heart,
+  History,
+  Link as LinkIcon,
+  Monitor,
+  RotateCcw,
+  Save,
+  Settings,
+  Sparkles,
+  Star,
+  type LucideIcon,
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+
+import smu6aPhoto from '../assets/images/home/smu6a.png';
 
 const InteractiveText = ({ text, baseColor, hoverColor, isLove = false }: { text: string, baseColor: string, hoverColor: string, isLove?: boolean }) => (
   <div className="flex items-baseline cursor-default select-none">
     {text.split('').map((char, i) => (
       <motion.span
         key={i}
-        className={`relative inline-block sticker-text ${baseColor} ${isLove ? 'text-[4.5rem] md:text-[6.5rem]' : 'text-[8.5rem] md:text-[10.5rem]'}`}
+        className={`relative inline-block sticker-text ${baseColor} ${isLove ? 'text-[3.25rem] sm:text-[4.5rem] md:text-[5.5rem] 2xl:text-[6.5rem]' : 'text-[4.75rem] sm:text-[6.5rem] md:text-[8rem] 2xl:text-[10.5rem]'}`}
         whileHover={{ 
           y: -25, 
           rotate: i % 2 === 0 ? 15 : -15, 
@@ -53,7 +69,7 @@ const InteractiveText = ({ text, baseColor, hoverColor, isLove = false }: { text
   </div>
 );
 
-const VNMenuButton = ({ to, label, subLabel, icon: Icon }: { to: string, label: string, subLabel: string, icon: any }) => (
+const VNMenuButton = ({ to, label, subLabel, icon: Icon }: { to: string, label: string, subLabel: string, icon: LucideIcon }) => (
   <Link 
     to={to} 
     className="vn-choice w-72 px-8 py-3 rounded-l-full rounded-r-lg group flex items-center justify-between border-r-4 border-pink-400 hover:border-pink-500 hover:w-80 transition-all duration-300"
@@ -68,15 +84,41 @@ const VNMenuButton = ({ to, label, subLabel, icon: Icon }: { to: string, label: 
   </Link>
 );
 
+const PhotoStage = () => (
+  <motion.div
+    className="relative z-10 flex h-[25rem] w-full max-w-[26rem] items-end justify-center self-center md:h-[30rem] md:max-w-[31rem] xl:h-[33rem] xl:max-w-[34rem]"
+    initial={{ y: 24, opacity: 0, scale: 0.95 }}
+    animate={{ y: 0, opacity: 1, scale: 1 }}
+    transition={{ delay: 0.25, type: 'spring', stiffness: 120, damping: 16 }}
+  >
+    <div className="glass absolute inset-x-6 bottom-6 h-[62%] rounded-[3rem] border-pink-100/80 shadow-[0_22px_60px_rgba(244,114,182,0.22)]" />
+    <div className="absolute inset-x-12 bottom-10 h-20 rounded-full bg-pink-200/40 blur-2xl" />
+    <Sparkles className="absolute left-7 top-12 z-30 h-8 w-8 text-yellow-300 drop-shadow-sm md:left-9" />
+    <Heart className="absolute right-8 top-20 z-30 h-7 w-7 -rotate-12 fill-pink-300 text-pink-300 drop-shadow-sm md:right-10" />
+    <Star className="absolute bottom-28 right-6 z-30 h-10 w-10 rotate-12 text-purple-200/80 md:right-8" fill="currentColor" />
+
+    <div className="relative z-20 h-full w-full">
+      <motion.img
+        src={smu6aPhoto}
+        alt="Blonde character illustration"
+        className="absolute bottom-2 left-1/2 h-[23rem] max-h-[66vh] w-auto -translate-x-[52%] object-contain object-bottom drop-shadow-[0_18px_28px_rgba(244,114,182,0.22)] md:h-[28rem] xl:h-[31rem]"
+        animate={{ y: [0, -8, 0], rotate: [-1.5, -0.5, -1.5] }}
+        transition={{ duration: 5.8, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+        draggable={false}
+      />
+    </div>
+  </motion.div>
+);
+
 export const Home = () => {
   return (
-    <div className="min-h-screen relative flex items-center justify-between px-12 md:px-24 overflow-hidden pt-10">
+    <div className="relative grid min-h-screen grid-cols-1 items-center gap-8 overflow-x-hidden px-6 pb-28 pt-16 md:px-12 md:pt-14 xl:grid-cols-[minmax(0,1fr)_minmax(22rem,0.68fr)_minmax(18rem,0.72fr)] xl:gap-6 xl:px-16 xl:py-10">
       <div className="fixed bottom-6 left-12 z-50 flex flex-col items-start opacity-40">
         <span className="cute-text text-[10px] tracking-widest text-gray-500 uppercase">Version 1.0.4 - Release</span>
         <span className="hand-text text-xs text-gray-400 font-bold">© 2024 lolikiss.love all dreams reserved.</span>
       </div>
 
-      <div className="relative z-10 flex flex-col items-start gap-4">
+      <div className="relative z-10 flex flex-col items-start gap-4 justify-self-center xl:justify-self-start">
         <div className="relative">
           <Sparkles className="absolute -top-16 -left-12 text-yellow-300 animate-pulse w-16 h-16" />
           <div className="font-bubble font-bold leading-none flex flex-col items-start">
@@ -113,7 +155,9 @@ export const Home = () => {
         </motion.div>
       </div>
 
-      <div className="relative z-10 flex flex-col gap-4 items-end">
+      <PhotoStage />
+
+      <div className="relative z-10 flex flex-col gap-4 items-end justify-self-center xl:justify-self-end">
         <VNMenuButton to="/garden" label="START" subLabel="Enter the garden" icon={ArrowRight} />
         <VNMenuButton to="/projects" label="RECOLLECT" subLabel="View my works" icon={Monitor} />
         <VNMenuButton to="/notes" label="MEMORIES" subLabel="Read my diary" icon={Book} />
