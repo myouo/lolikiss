@@ -24,7 +24,6 @@ export const Navbar = () => {
         <Link to="/projects" className="cute-text text-sm text-gray-500 hover:text-pink-500 transition-colors">Projects</Link>
         <Link to="/notes" className="cute-text text-sm text-gray-500 hover:text-pink-500 transition-colors">Notes</Link>
         <Link to="/links" className="cute-text text-sm text-gray-500 hover:text-pink-500 transition-colors">Links</Link>
-        <Link to="/ranks" className="cute-text text-sm text-gray-500 hover:text-pink-500 transition-colors">Extra</Link>
         
         <div className="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center cursor-pointer hover:rotate-12 transition-transform border border-pink-200">
            <Heart className="w-4 h-4 text-pink-400 fill-pink-400" />

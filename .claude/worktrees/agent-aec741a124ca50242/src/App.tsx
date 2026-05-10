@@ -1,11 +1,8 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Home } from './pages/Home';
-import { Garden } from './pages/Garden';
 import { Projects } from './pages/Projects';
 import { Notes } from './pages/Notes';
-import { Links } from './pages/Links';
-import { Ranks } from './pages/Ranks';
 import { Navbar } from './components/Navbar';
 import { BackgroundEffects } from './components/BackgroundEffects';
 
@@ -29,11 +26,11 @@ function App() {
       <main className={`relative z-10 ${!isHome ? 'pt-20 pb-20' : ''}`}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/garden" element={<Garden />} />
+          <Route path="/garden" element={<div className="p-10 text-center glass m-10 rounded-3xl">Garden Page - Coming Soon</div>} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/notes" element={<Notes />} />
-          <Route path="/links" element={<Links />} />
-          <Route path="/ranks" element={<Ranks />} />
+          <Route path="/links" element={<div className="p-10 text-center glass m-10 rounded-3xl">Links Page - Coming Soon</div>} />
+          <Route path="/lab" element={<div className="p-10 text-center glass m-10 rounded-3xl">Lab Page - Coming Soon</div>} />
         </Routes>
       </main>
     </div>

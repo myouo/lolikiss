@@ -16,7 +16,7 @@ import {
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-import { getTodayMascot } from '../lib/mascotRotation';
+import smu6aPhoto from '../assets/images/home/smu6a.png';
 
 const InteractiveText = ({ text, baseColor, hoverColor, isLove = false }: { text: string, baseColor: string, hoverColor: string, isLove?: boolean }) => (
   <div className="flex items-baseline cursor-default select-none">
@@ -84,19 +84,7 @@ const VNMenuButton = ({ to, label, subLabel, icon: Icon }: { to: string, label: 
   </Link>
 );
 
-const PresenceStars = ({ level }: { level: number }) => (
-  <div className="flex items-center gap-1" aria-label={`Presence level ${level}`}>
-    {Array.from({ length: 5 }).map((_, index) => (
-      <Star
-        key={index}
-        className={`h-3.5 w-3.5 ${index < level ? 'text-yellow-300' : 'text-pink-100'}`}
-        fill="currentColor"
-      />
-    ))}
-  </div>
-);
-
-const PhotoStage = ({ image, alt }: { image: string, alt: string }) => (
+const PhotoStage = () => (
   <motion.div
     className="relative z-10 flex h-[25rem] w-full max-w-[26rem] items-end justify-center self-center md:h-[30rem] md:max-w-[31rem] xl:h-[33rem] xl:max-w-[34rem]"
     initial={{ y: 24, opacity: 0, scale: 0.95 }}
@@ -105,17 +93,14 @@ const PhotoStage = ({ image, alt }: { image: string, alt: string }) => (
   >
     <div className="glass absolute inset-x-6 bottom-6 h-[62%] rounded-[3rem] border-pink-100/80 shadow-[0_22px_60px_rgba(244,114,182,0.22)]" />
     <div className="absolute inset-x-12 bottom-10 h-20 rounded-full bg-pink-200/40 blur-2xl" />
-    <div className="absolute left-8 top-5 z-30 rounded-full border-2 border-white/70 bg-white/50 px-4 py-2 shadow-sm backdrop-blur-md">
-      <span className="cute-text text-[9px] uppercase tracking-[0.28em] text-pink-400">Today's visitor</span>
-    </div>
     <Sparkles className="absolute left-7 top-12 z-30 h-8 w-8 text-yellow-300 drop-shadow-sm md:left-9" />
     <Heart className="absolute right-8 top-20 z-30 h-7 w-7 -rotate-12 fill-pink-300 text-pink-300 drop-shadow-sm md:right-10" />
     <Star className="absolute bottom-28 right-6 z-30 h-10 w-10 rotate-12 text-purple-200/80 md:right-8" fill="currentColor" />
 
     <div className="relative z-20 h-full w-full">
       <motion.img
-        src={image}
-        alt={alt}
+        src={smu6aPhoto}
+        alt="Blonde character illustration"
         className="absolute bottom-2 left-1/2 h-[23rem] max-h-[66vh] w-auto -translate-x-[52%] object-contain object-bottom drop-shadow-[0_18px_28px_rgba(244,114,182,0.22)] md:h-[28rem] xl:h-[31rem]"
         animate={{ y: [0, -8, 0], rotate: [-1.5, -0.5, -1.5] }}
         transition={{ duration: 5.8, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
@@ -126,8 +111,6 @@ const PhotoStage = ({ image, alt }: { image: string, alt: string }) => (
 );
 
 export const Home = () => {
-  const todayMascot = getTodayMascot();
-
   return (
     <div className="relative grid min-h-screen grid-cols-1 items-center gap-8 overflow-x-hidden px-6 pb-28 pt-16 md:px-12 md:pt-14 xl:grid-cols-[minmax(0,1fr)_minmax(22rem,0.68fr)_minmax(18rem,0.72fr)] xl:gap-6 xl:px-16 xl:py-10">
       <div className="fixed bottom-6 left-12 z-50 flex flex-col items-start opacity-40">
@@ -160,40 +143,26 @@ export const Home = () => {
           transition={{ delay: 0.5, type: "spring" }}
         >
           <div className="glass p-6 rounded-[2.5rem] border-pink-200 shadow-2xl relative overflow-hidden max-w-sm">
-            <div className="flex items-center gap-4 mb-3">
+            <div className="flex items-center gap-4 mb-2">
               <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center text-2xl animate-bounce">🐱</div>
-              <div>
-                <span className="cute-text text-pink-500 text-sm font-bold tracking-widest">SYSTEM MESSAGE</span>
-                <div className="mt-1 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">
-                  <span>{todayMascot.displayName}</span>
-                  <PresenceStars level={todayMascot.presenceLevel} />
-                </div>
-              </div>
+              <span className="cute-text text-pink-500 text-sm font-bold tracking-widest">SYSTEM MESSAGE</span>
             </div>
             <p className="hand-text text-xl text-gray-600 font-bold leading-tight italic">
-              "{todayMascot.greeting}"
+              "Ready for a new adventure in the softest corner of the internet?"
             </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              <span className="rounded-full bg-white/50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-pink-400">
-                mood: {todayMascot.mood}
-              </span>
-              <span className="rounded-full bg-white/50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-purple-300">
-                path: {todayMascot.suggestedPath}
-              </span>
-            </div>
           </div>
           <div className="absolute -top-2 -right-2 bg-pink-400 text-white text-[8px] px-2 py-1 rounded-full cute-text font-bold uppercase shadow-md">Notice!</div>
         </motion.div>
       </div>
 
-      <PhotoStage image={todayMascot.assets.standing} alt={todayMascot.assets.alt} />
+      <PhotoStage />
 
       <div className="relative z-10 flex flex-col gap-4 items-end justify-self-center xl:justify-self-end">
         <VNMenuButton to="/garden" label="START" subLabel="Enter the garden" icon={ArrowRight} />
         <VNMenuButton to="/projects" label="RECOLLECT" subLabel="View my works" icon={Monitor} />
         <VNMenuButton to="/notes" label="MEMORIES" subLabel="Read my diary" icon={Book} />
         <VNMenuButton to="/links" label="PORTAL" subLabel="External links" icon={LinkIcon} />
-        <VNMenuButton to="/ranks" label="EXTRA" subLabel="View my ranks" icon={Beaker} />
+        <VNMenuButton to="/lab" label="EXTRA" subLabel="Secret lab" icon={Beaker} />
         
         <div className="mt-8 flex gap-6 mr-4">
           <button className="text-gray-400 hover:text-pink-400 transition-colors flex flex-col items-center gap-1 group">
