@@ -3,3 +3,6 @@ dist/
 dist-ssr/
 *.local
 *.log
+design.md
+talks.md
+refer/
