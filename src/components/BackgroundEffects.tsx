@@ -1,17 +1,18 @@
+import { Heart, Sparkles, Star } from 'lucide-react';
+
 export const BackgroundEffects = () => {
   return (
-    <div className="fixed inset-0 pointer-events-none z-0">
-      {/* Grid Overlay */}
-      <div className="absolute inset-0 grid-pattern opacity-30" />
-      
-      {/* Decorative Blur Orbs */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-pink-200/40 rounded-full blur-[100px]" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-200/40 rounded-full blur-[100px]" />
-      
-      {/* Floating Sparkles Placeholder */}
-      <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white rounded-full animate-pulse-slow shadow-[0_0_10px_white]" />
-      <div className="absolute top-1/2 right-1/3 w-1.5 h-1.5 bg-white rounded-full animate-pulse shadow-[0_0_8px_white]" />
-      <div className="absolute bottom-1/4 left-1/3 w-2.5 h-2.5 bg-white rounded-full animate-pulse-slow shadow-[0_0_12px_white]" />
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <div className="absolute inset-0 grid-pattern opacity-70" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.42),transparent_28%,rgba(255,255,255,0.28)_72%,transparent)] dark:bg-none" />
+
+      <Sparkles className="animate-float-soft absolute left-[11%] top-[17%] h-7 w-7 text-amber-200/70" />
+      <Heart className="animate-float-soft absolute right-[13%] top-[28%] h-8 w-8 -rotate-12 text-pink-300/45" fill="currentColor" />
+      <Star className="animate-pulse-soft absolute bottom-[18%] left-[18%] h-6 w-6 text-purple-200/60" fill="currentColor" />
+      <Sparkles className="animate-pulse-soft absolute bottom-[28%] right-[24%] h-5 w-5 text-white/75" />
+
+      <div className="absolute left-8 top-1/2 h-40 w-px bg-gradient-to-b from-transparent via-pink-200/40 to-transparent" />
+      <div className="absolute bottom-12 right-10 h-px w-48 bg-gradient-to-r from-transparent via-purple-200/40 to-transparent" />
     </div>
   );
 };

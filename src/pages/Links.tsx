@@ -1,60 +1,59 @@
-import { ExternalLink, Github, Heart, Mail, Sparkles, Star } from 'lucide-react';
+import { ExternalLink, Github, Heart, Link as LinkIcon, Mail, Sparkles, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
+
+import { GlassPanel, HeroPanel, PageShell, SectionHeader } from '../components/SoftUI';
+import { useI18n } from '../i18n/useI18n';
+import { fadeUp } from '../lib/ui';
 
 const portalGroups = [
   {
     group: 'Code',
+    summaryKey: 'links.group.code.summary',
     portals: [
-      { label: 'GitHub', description: 'where my code sleeps', href: '#', icon: Github },
+      { label: 'GitHub', descriptionKey: 'links.github.desc', href: '#', icon: Github },
     ],
   },
   {
     group: 'Social',
+    summaryKey: 'links.group.social.summary',
     portals: [
-      { label: 'Mail', description: 'send a small letter', href: '#', icon: Mail },
-      { label: 'Heart Room', description: 'a quiet place for updates', href: '#', icon: Heart },
+      { label: 'Mail', descriptionKey: 'links.mail.desc', href: '#', icon: Mail },
+      { label: 'Heart Room', descriptionKey: 'links.heart.desc', href: '#', icon: Heart },
     ],
   },
   {
     group: 'Archive',
+    summaryKey: 'links.group.archive.summary',
     portals: [
-      { label: 'Old Garden', description: 'past versions and soft traces', href: '#', icon: Star },
+      { label: 'Old Garden', descriptionKey: 'links.oldGarden.desc', href: '#', icon: Star },
     ],
   },
 ];
 
 export const Links = () => {
-  return (
-    <div className="relative mx-auto max-w-5xl px-6 py-12 md:px-10">
-      <motion.section
-        className="glass relative mb-8 overflow-hidden rounded-[3rem] border-pink-100/80 p-7 shadow-[0_22px_70px_rgba(244,114,182,0.18)] md:p-10"
-        initial={{ y: 18, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ type: 'spring', stiffness: 120, damping: 18 }}
-      >
-        <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-pink-200/30 blur-3xl" />
-        <div className="absolute -bottom-24 left-12 h-56 w-56 rounded-full bg-purple-200/25 blur-3xl" />
-        <div className="relative">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border-2 border-white/70 bg-white/50 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.32em] text-pink-400 shadow-sm">
-            <Sparkles className="h-4 w-4" />
-            Portal room
-          </div>
-          <h1 className="cute-text sticker-text text-5xl leading-none text-gray-700 sm:text-6xl md:text-7xl">
-            portal
-          </h1>
-          <p className="hand-text mt-5 max-w-2xl text-2xl font-bold leading-tight text-gray-500 md:text-3xl">
-            Select a portal to jump somewhere else. Each little door opens with a soft sparkle.
-          </p>
-        </div>
-      </motion.section>
+  const { t } = useI18n();
 
-      <div className="space-y-7">
+  return (
+    <PageShell>
+      <HeroPanel
+        icon={LinkIcon}
+        eyebrow={t('links.eyebrow')}
+        title="portal"
+        copy={t('links.copy')}
+        side={
+          <GlassPanel className="p-5" strong>
+            <div className="system-text mb-3 text-accent">{t('links.status')}</div>
+            <p className="hand-text text-2xl font-bold leading-tight text-main">
+              {t('links.status.copy')}
+            </p>
+          </GlassPanel>
+        }
+      />
+
+      <div className="space-y-8">
         {portalGroups.map((group, groupIndex) => (
           <section key={group.group}>
-            <div className="mb-4 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-pink-400">
-              <Star className="h-4 w-4" fill="currentColor" />
-              {group.group}
-            </div>
+            <SectionHeader eyebrow={group.group} title={t(group.summaryKey)} />
             <div className="grid gap-5 md:grid-cols-2">
               {group.portals.map((portal, index) => {
                 const Icon = portal.icon;
@@ -63,25 +62,34 @@ export const Links = () => {
                   <motion.a
                     key={portal.label}
                     href={portal.href}
-                    className="glass group relative overflow-hidden rounded-[2rem] p-6 transition-all hover:-translate-y-1 hover:bg-white/50"
+                    className="block"
                     initial={{ y: 18, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: (groupIndex + index) * 0.06, type: 'spring', stiffness: 120, damping: 18 }}
+                    transition={{ ...fadeUp.transition, delay: (groupIndex + index) * 0.06 }}
                   >
-                    <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-pink-200/0 blur-2xl transition-colors group-hover:bg-pink-200/40" />
-                    <div className="relative flex items-center justify-between gap-4">
-                      <div className="flex items-center gap-4">
-                        <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-white/70 bg-white/50 text-pink-400 shadow-sm transition-transform group-hover:scale-110">
-                          <Icon className="h-6 w-6" />
+                    <GlassPanel hover className="h-full p-5 sm:p-6">
+                      <div className="relative flex items-center justify-between gap-4">
+                        <div className="flex min-w-0 items-center gap-4">
+                          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-white/60 bg-white/35 text-accent shadow-sm transition-transform group-hover:scale-105">
+                            <Icon className="h-6 w-6" />
+                          </div>
+                          <div className="min-w-0">
+                            <div className="system-text text-accent">PORTAL SLOT</div>
+                            <h2 className="display-text mt-1 truncate text-3xl leading-tight text-main transition-colors group-hover:text-accent">
+                              {portal.label}
+                            </h2>
+                            <p className="hand-text mt-1 text-xl font-bold leading-tight text-muted">{t(portal.descriptionKey)}</p>
+                          </div>
                         </div>
-                        <div>
-                          <div className="cute-text text-[10px] uppercase tracking-[0.28em] text-pink-400">PORTAL SLOT</div>
-                          <h2 className="serif-text mt-1 text-3xl text-gray-700 transition-colors group-hover:text-pink-500">{portal.label}</h2>
-                          <p className="hand-text mt-1 text-xl font-bold text-gray-400">{portal.description}</p>
-                        </div>
+                        <ExternalLink className="h-5 w-5 shrink-0 text-soft transition-colors group-hover:text-accent" />
                       </div>
-                      <ExternalLink className="h-5 w-5 text-gray-300 transition-colors group-hover:text-pink-400" />
-                    </div>
+                      <div className="mt-5 flex items-center gap-2">
+                        <div className="h-2 flex-1 overflow-hidden rounded-full border border-white/45 bg-white/25">
+                          <div className="h-full w-1/2 rounded-full bg-pink-300/70 transition-all group-hover:w-full" />
+                        </div>
+                        <Sparkles className="h-4 w-4 text-amber-300 opacity-0 transition-opacity group-hover:opacity-100" />
+                      </div>
+                    </GlassPanel>
                   </motion.a>
                 );
               })}
@@ -89,6 +97,6 @@ export const Links = () => {
           </section>
         ))}
       </div>
-    </div>
+    </PageShell>
   );
 };

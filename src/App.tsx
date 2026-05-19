@@ -6,6 +6,7 @@ import { Projects } from './pages/Projects';
 import { Notes } from './pages/Notes';
 import { Links } from './pages/Links';
 import { Ranks } from './pages/Ranks';
+import { NotFound } from './pages/NotFound';
 import { Navbar } from './components/Navbar';
 import { BackgroundEffects } from './components/BackgroundEffects';
 
@@ -22,11 +23,11 @@ function App() {
   const isHome = location.pathname === '/';
 
   return (
-    <div className="relative min-h-screen sans-text">
+    <div className="relative min-h-screen">
       <ScrollToTop />
       <BackgroundEffects />
       {!isHome && <Navbar />}
-      <main className={`relative z-10 ${!isHome ? 'pt-20 pb-20' : ''}`}>
+      <main className={`relative z-10 ${!isHome ? 'pb-16 pt-32 sm:pt-28' : ''}`}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/garden" element={<Garden />} />
@@ -34,6 +35,7 @@ function App() {
           <Route path="/notes" element={<Notes />} />
           <Route path="/links" element={<Links />} />
           <Route path="/ranks" element={<Ranks />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
     </div>
