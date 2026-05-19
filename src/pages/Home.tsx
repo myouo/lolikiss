@@ -1,6 +1,7 @@
 import { type CSSProperties } from 'react';
 import {
   ArrowRight,
+  BookHeart,
   BookOpen,
   FolderOpen,
   Heart,
@@ -28,6 +29,7 @@ const menuItems = [
   { to: '/garden', label: 'START', subLabelKey: 'home.menu.garden', icon: ArrowRight },
   { to: '/projects', label: 'RECOLLECT', subLabelKey: 'home.menu.projects', icon: FolderOpen },
   { to: '/notes', label: 'MEMORIES', subLabelKey: 'home.menu.notes', icon: BookOpen },
+  { to: '/diary', label: 'DIARY', subLabelKey: 'home.menu.diary', icon: BookHeart },
   { to: '/links', label: 'PORTAL', subLabelKey: 'home.menu.links', icon: LinkIcon },
   { to: '/ranks', label: 'EXTRA', subLabelKey: 'home.menu.ranks', icon: Trophy },
 ];

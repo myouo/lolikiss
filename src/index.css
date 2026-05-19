@@ -111,17 +111,17 @@ a:focus-visible {
 }
 
 .cute-text {
-  font-family: "Mochiay Pop One", "Quicksand", sans-serif;
+  font-family: "ZCOOL KuaiLe", "Mochiay Pop One", "Quicksand", sans-serif;
   letter-spacing: 0;
 }
 
 .display-text {
-  font-family: "DynaPuff", "Mochiay Pop One", sans-serif;
+  font-family: "Cherry Bomb One", "ZCOOL KuaiLe", "DynaPuff", "Mochiay Pop One", sans-serif;
   letter-spacing: 0;
 }
 
 .hand-text {
-  font-family: "Gaegu", "Quicksand", cursive;
+  font-family: "Ma Shan Zheng", "Gaegu", "Quicksand", cursive;
   letter-spacing: 0;
 }
 
@@ -277,6 +277,107 @@ a:focus-visible {
     linear-gradient(90deg, rgba(244, 114, 182, 0.08) 1px, transparent 1px),
     linear-gradient(rgba(244, 114, 182, 0.06) 1px, transparent 1px);
   background-size: 24px 24px;
+}
+
+.diary-markdown {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  line-height: 1.85;
+}
+
+.diary-markdown > * + * {
+  margin-top: 1rem;
+}
+
+.diary-markdown h2,
+.diary-markdown h3,
+.diary-markdown h4 {
+  color: var(--text-main);
+  font-family: "ZCOOL KuaiLe", "Cherry Bomb One", "DynaPuff", sans-serif;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.diary-markdown h2 {
+  font-size: 2rem;
+}
+
+.diary-markdown h3 {
+  font-size: 1.55rem;
+}
+
+.diary-markdown h4 {
+  font-size: 1.25rem;
+}
+
+.diary-markdown strong {
+  color: var(--accent-strong);
+  font-weight: 800;
+}
+
+.diary-markdown em {
+  color: var(--text-main);
+  font-style: italic;
+}
+
+.diary-markdown a {
+  color: var(--accent-strong);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-color: rgba(244, 114, 182, 0.36);
+  text-underline-offset: 0.25em;
+}
+
+.diary-markdown ul,
+.diary-markdown ol {
+  padding-left: 1.25rem;
+}
+
+.diary-markdown li + li {
+  margin-top: 0.35rem;
+}
+
+.diary-markdown blockquote {
+  border-left: 4px solid rgba(244, 114, 182, 0.42);
+  border-radius: 1rem;
+  background: var(--glass-soft);
+  padding: 1rem 1.1rem;
+  color: var(--text-main);
+  font-family: "Ma Shan Zheng", "Gaegu", cursive;
+  font-size: 1.35rem;
+  line-height: 1.55;
+}
+
+.diary-markdown :not(pre) > code {
+  border: 1px solid var(--line);
+  border-radius: 0.55rem;
+  background: var(--glass-soft);
+  padding: 0.1rem 0.38rem;
+  color: var(--accent-strong);
+  font-size: 0.86em;
+}
+
+.diary-markdown pre {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.32);
+  padding: 1rem;
+}
+
+.diary-markdown pre > span {
+  display: block;
+  margin-bottom: 0.55rem;
+  color: var(--text-soft);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.diary-markdown pre code {
+  color: var(--text-main);
+  white-space: pre;
 }
 
 .safe-bottom {

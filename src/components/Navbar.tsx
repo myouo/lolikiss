@@ -1,4 +1,4 @@
-import { BookOpen, FolderOpen, Heart, Link as LinkIcon, Sparkles, Trophy, Trees } from 'lucide-react';
+import { BookHeart, BookOpen, FolderOpen, Heart, Link as LinkIcon, Sparkles, Trophy, Trees } from 'lucide-react';
 import { Link, NavLink } from 'react-router-dom';
 
 import { LanguageToggle } from './LanguageToggle';
@@ -9,6 +9,7 @@ const navItems = [
   { to: '/garden', labelKey: 'nav.garden', command: 'START', icon: Trees },
   { to: '/projects', labelKey: 'nav.projects', command: 'RECOLLECT', icon: FolderOpen },
   { to: '/notes', labelKey: 'nav.notes', command: 'MEMORIES', icon: BookOpen },
+  { to: '/diary', labelKey: 'nav.diary', command: 'DIARY', icon: BookHeart },
   { to: '/links', labelKey: 'nav.links', command: 'PORTAL', icon: LinkIcon },
   { to: '/ranks', labelKey: 'nav.ranks', command: 'EXTRA', icon: Trophy },
 ];

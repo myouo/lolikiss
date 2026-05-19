@@ -4,6 +4,8 @@ import { Home } from './pages/Home';
 import { Garden } from './pages/Garden';
 import { Projects } from './pages/Projects';
 import { Notes } from './pages/Notes';
+import { Diary } from './pages/Diary';
+import { DiaryManage } from './pages/DiaryManage';
 import { Links } from './pages/Links';
 import { Ranks } from './pages/Ranks';
 import { NotFound } from './pages/NotFound';
@@ -33,6 +35,8 @@ function App() {
           <Route path="/garden" element={<Garden />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/notes" element={<Notes />} />
+          <Route path="/diary" element={<Diary />} />
+          <Route path="/diary/manage" element={<DiaryManage />} />
           <Route path="/links" element={<Links />} />
           <Route path="/ranks" element={<Ranks />} />
           <Route path="*" element={<NotFound />} />
