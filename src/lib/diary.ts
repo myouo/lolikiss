@@ -19,8 +19,6 @@ export type DiaryDraft = {
 };
 
 const entriesKey = 'lolikiss.diary.entries.v1';
-const passcodeKey = 'lolikiss.diary.passcode.sha256.v1';
-const unlockedKey = 'lolikiss.diary.unlocked.v1';
 
 const seedEntries: DiaryEntry[] = [
   {
@@ -28,13 +26,13 @@ const seedEntries: DiaryEntry[] = [
     title: '第一篇柔软日记',
     date: '2026-05-20',
     mood: '安静 / 有一点期待',
-    tags: ['private', 'garden', 'markdown'],
+    tags: ['memory', 'garden', 'markdown'],
     createdAt: '2026-05-20T00:00:00.000Z',
     updatedAt: '2026-05-20T00:00:00.000Z',
     content: [
       '# 今天的小房间',
       '',
-      '这里不是公开博客，而是一个需要口令才能进入的 **Diary Room**。',
+      '这里不是公开博客，而是一个可以直接阅读和整理的 **Diary Room**。',
       '',
       '- 可以写普通日记',
       '- 可以写 ACG 碎片',
@@ -44,7 +42,7 @@ const seedEntries: DiaryEntry[] = [
       '',
       '```txt',
       'SAVE SLOT: diary-001',
-      'STATUS: softly protected',
+      'STATUS: softly open',
       '```',
     ].join('\n'),
   },
@@ -113,41 +111,3 @@ export const toDiaryDraft = (entry: DiaryEntry): DiaryDraft => ({
   tags: entry.tags,
   content: entry.content,
 });
-
-export const hasDiaryPasscode = () => Boolean(window.localStorage.getItem(passcodeKey));
-
-const toHex = (buffer: ArrayBuffer) => {
-  return Array.from(new Uint8Array(buffer))
-    .map((byte) => byte.toString(16).padStart(2, '0'))
-    .join('');
-};
-
-export const hashDiaryPasscode = async (passcode: string) => {
-  const encoded = new TextEncoder().encode(`lolikiss-diary:${passcode}`);
-  const digest = await crypto.subtle.digest('SHA-256', encoded);
-  return toHex(digest);
-};
-
-export const setDiaryPasscode = async (passcode: string) => {
-  window.localStorage.setItem(passcodeKey, await hashDiaryPasscode(passcode));
-};
-
-export const verifyDiaryPasscode = async (passcode: string) => {
-  const storedHash = window.localStorage.getItem(passcodeKey);
-  if (!storedHash) {
-    return false;
-  }
-
-  return storedHash === (await hashDiaryPasscode(passcode));
-};
-
-export const isDiaryUnlocked = () => window.sessionStorage.getItem(unlockedKey) === 'true';
-
-export const setDiaryUnlocked = (unlocked: boolean) => {
-  if (unlocked) {
-    window.sessionStorage.setItem(unlockedKey, 'true');
-    return;
-  }
-
-  window.sessionStorage.removeItem(unlockedKey);
-};
